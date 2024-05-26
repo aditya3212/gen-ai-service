@@ -34,3 +34,5 @@ build/
 
 ### Spring boot files ###
 .env
+src/main/resources/application.properties
+src/main/resources/application.properties
