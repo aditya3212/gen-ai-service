@@ -1,44 +1,52 @@
 package com.example.genaiservice.apis.user;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import org.springframework.data.mongodb.core.mapping.Field;
 import lombok.Data;
 
 
 @Data
-@Document(collection = "users")
+@Document(collection = "user")
 public class UserEntity {
 	
     @Id
     private String _id;
     
     private String name;
+    
+    
+    @Field("user_id")
+    private String userId;
+    
     private String email;
+    
+    @Field("phone_no")
+    private String phoneNo;
+    
+    private String password;
+    
+    @Field("enc_password")
+    private String encPassword;
+    
+    @Field("private_field_url")
+    private String profilePicUrl;
+    
+    private String role;
+    
+    @Field("last_login")
+    private String lastLogin;
+        
+    @Field("session_id")
+    private String sessionId;
+    
+    @Field("created_at")
+    private Date createdAt;
 
-    // Getters and setters
-//    public String getId() {
-//        return id;
-//    }
-//
-//    public void setId(String id) {
-//        this.id = id;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
+    @Field("updated_at")
+    private Date updatedAt;
+
 }
 
