@@ -1,7 +1,10 @@
 package com.example.genaiservice.apis.user;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 
+@CrossOrigin(origins = "http://localhost:4200") 
 @RequiredArgsConstructor
 @RequestMapping("/user")
 @RestController
@@ -17,6 +21,12 @@ public class UserController {
 	
 	private final UserService userService;
 	
+	@PostMapping
+	public ResponseEntity<String> registerUser(@RequestBody UserEntity userEntity){
+		
+		userService.registerUser(userEntity);
+		return ResponseEntity.ok("User created successfully");
+	}
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<UserEntity>> getUser(){

@@ -35,7 +35,7 @@ db.runCommand({
             },
             updated_at:{
             	 bsonType: "date",
-               description: "must be a string and is required"
+               description: "must be a date and is required"
             }
          }
       }
