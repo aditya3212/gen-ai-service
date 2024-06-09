@@ -93,15 +93,13 @@ public class UserServiceImpl implements UserService {
 			throw new CustomException("User does not exist");
 		}
 		UserEntity dbUserEntity = userList.get(0);
-//		userList.add(null);
-//		matches(CharSequence rawPassword, String encodedPassword)
 		if(!passwordEncoder.matches(userEntity.getPassword(),dbUserEntity.getEncPassword())) {
 			throw new CustomException("Wrong password");
 		}
 		
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("userId", userEntity.getUserId());
-		claims.put("role", userEntity.getRole());
+		claims.put("userId", dbUserEntity.getUserId());
+		claims.put("role", dbUserEntity.getRole());
 		String token = jwtTokenUtil.createToken(claims, userEntity.getUserId());
 		
 		log.info("token user name is {}", jwtTokenUtil.getUserId(token));

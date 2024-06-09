@@ -21,7 +21,7 @@ public class UserController {
 
 	private final UserService userService;
 
-	@PostMapping
+	@PostMapping("/sign-in")
 	public ResponseEntity<String> registerUser(@RequestBody UserEntity userEntity) {
 
 		userService.registerUser(userEntity);
