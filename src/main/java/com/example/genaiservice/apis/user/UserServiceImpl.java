@@ -6,6 +6,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import com.example.genaiservice.common.CustomException;
+
 import java.util.Date;
 
 import lombok.RequiredArgsConstructor;
@@ -27,12 +30,12 @@ public class UserServiceImpl implements UserService {
 		if(flag==false) {
 			//throw an exception and return
 			log.error("One or more field missing");
-			return;
+			throw new CustomException("One or more required field missing");
 		}
 		List<UserEntity> userList = userRepository.findByUserId(userEntity.getUserId());
 		
 		if(!CollectionUtils.isEmpty(userList)) {
-			return;
+			throw new CustomException("User already exist");
 		}
 		
 		String encPassword = passwordEncoder.encode(userEntity.getPassword());
@@ -43,6 +46,7 @@ public class UserServiceImpl implements UserService {
 			userRepository.save(userEntity);
 		}catch(Exception e) {
 			log.error("Exception while saving user repository ", e.getMessage());
+			throw new CustomException("Exception while saving user");
 		}
 		
 		log.info("User created successfully");
