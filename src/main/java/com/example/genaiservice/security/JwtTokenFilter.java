@@ -1,19 +1,16 @@
 package com.example.genaiservice.security;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.genaiservice.common.CustomException;
 import com.example.genaiservice.util.JwtTokenUtil;
 
 import io.micrometer.common.util.StringUtils;
-
-import java.util.Arrays;
-import java.util.List;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
